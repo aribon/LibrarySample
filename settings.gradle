@@ -1,0 +1,1 @@
+include ':app', ':redux', ':library_ui', ':core_ui', ':data_glose', ':core_data', ':library_domain'
