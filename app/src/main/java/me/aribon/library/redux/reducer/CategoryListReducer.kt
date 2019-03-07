@@ -8,7 +8,7 @@ import me.aribon.library.redux.base.Reducer
  * Created by anthony.ribon
  * On 06/03/2019
  */
-class CategoryListReducer()
+class CategoryListReducer
   : Reducer<CategoryListState, CategoryListAction> {
 
   override fun reduce(oldState: CategoryListState, action: CategoryListAction): CategoryListState {

@@ -34,7 +34,7 @@
         >
 
         <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/tvBookDetailsImage"
+                android:id="@+id/ivBookDetailsImage"
                 android:layout_width="136dp"
                 android:layout_height="192dp"
                 tools:background="@android:color/darker_gray"
@@ -52,7 +52,7 @@
                 tools:textStyle="bold"
                 tools:textColor="@android:color/black"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@+id/tvBookDetailsImage"
+                app:layout_constraintTop_toBottomOf="@+id/ivBookDetailsImage"
                 app:layout_constraintBottom_toTopOf="@id/tvCategoryItemBooksAvailable"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

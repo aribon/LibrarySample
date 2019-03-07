@@ -3,6 +3,8 @@ package me.aribon.library.ui.book_details
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.content_book_details.ivBookDetailsImage
 import kotlinx.android.synthetic.main.content_book_details.progressBookDetails
 import kotlinx.android.synthetic.main.content_book_details.tvBookDetailsAuthor
 import kotlinx.android.synthetic.main.content_book_details.tvBookDetailsCategory
@@ -80,6 +82,9 @@ class BookDetailsFragment :
         tvBookDetailsCategory.text = viewModel?.category
         tvBookDetailsDescription.text = viewModel?.description
         tvBookDetailsPrice.text = viewModel?.price.toString()
+        Glide.with(this)
+            .load(viewModel?.imageUrl)
+            .into(ivBookDetailsImage)
       }
     }
   }

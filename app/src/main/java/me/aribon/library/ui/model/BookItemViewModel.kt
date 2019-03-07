@@ -9,5 +9,6 @@ data class BookItemViewModel(
     val title: String,
     val authors: Collection<String>,
     val publisher: String,
-    val price: Double
+    val price: Double,
+    val imageUrl: String
                             )

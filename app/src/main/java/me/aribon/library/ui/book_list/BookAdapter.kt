@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.content_book_details.ivBookDetailsImage
+import kotlinx.android.synthetic.main.item_book.view.ivBookItemImage
 import kotlinx.android.synthetic.main.item_book.view.tvBookItemAuthor
 import kotlinx.android.synthetic.main.item_book.view.tvBookItemPrice
 import kotlinx.android.synthetic.main.item_book.view.tvBookItemPublisher
@@ -43,6 +46,9 @@ class BookAdapter(
         String.format(context.getString(R.string.tui_book_item_publisher, viewModel.publisher))
     holder.itemView.tvBookItemPrice.text =
         String.format(context.getString(R.string.tui_book_item_price, viewModel.price))
+    Glide.with(context)
+        .load(viewModel.imageUrl)
+        .into(holder.itemView.ivBookItemImage)
     holder.itemView.setOnClickListener {
       listener.onBookItemClick(viewModel)
     }

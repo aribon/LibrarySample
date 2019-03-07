@@ -4,50 +4,55 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "me.aribon.library"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  compileSdkVersion 28
+  defaultConfig {
+    applicationId "me.aribon.library"
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:${libraries.supportVersion}"
-    implementation "com.android.support:design:${libraries.supportVersion}"
-    implementation "com.android.support:recyclerview-v7:${libraries.supportVersion}"
-    implementation "com.android.support.constraint:constraint-layout:${libraries.constraintLayoutVersion}"
+  implementation "com.android.support:appcompat-v7:${libraries.supportVersion}"
+  implementation "com.android.support:design:${libraries.supportVersion}"
+  implementation "com.android.support:recyclerview-v7:${libraries.supportVersion}"
+  implementation "com.android.support.constraint:constraint-layout:${libraries.constraintLayoutVersion}"
 
-    implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroidVersion}"
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-    implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjavaVersion}"
+  implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroidVersion}"
+  // Because RxAndroid releases are few and far between, it is recommended you also
+  // explicitly depend on RxJava's latest version for bug fixes and new features.
+  implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjavaVersion}"
 
-    implementation "com.squareup.retrofit2:retrofit:${libraries.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${libraries.retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-moshi:${libraries.retrofitVersion}"
+  implementation "com.squareup.retrofit2:retrofit:${libraries.retrofitVersion}"
+  implementation "com.squareup.retrofit2:converter-gson:${libraries.retrofitVersion}"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitVersion}"
+  implementation "com.squareup.retrofit2:converter-moshi:${libraries.retrofitVersion}"
 
-    implementation "com.squareup.okhttp3:logging-interceptor:${libraries.okhttpVersion}"
-    implementation "com.squareup.okhttp3:okhttp:${libraries.okhttpVersion}"
+  implementation "com.squareup.okhttp3:logging-interceptor:${libraries.okhttpVersion}"
+  implementation "com.squareup.okhttp3:okhttp:${libraries.okhttpVersion}"
 
-    implementation "com.google.code.gson:gson:${libraries.gsonVersion}"
+  implementation "com.google.code.gson:gson:${libraries.gsonVersion}"
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+  implementation "com.github.bumptech.glide:glide:${libraries.glideVersion}"
+  kapt "com.github.bumptech.glide:glide:${libraries.glideVersion}"
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation 'com.android.support:appcompat-v7:28.0.0'
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

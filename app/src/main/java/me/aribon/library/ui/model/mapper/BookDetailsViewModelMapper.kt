@@ -16,7 +16,8 @@ class BookDetailsViewModelMapper : Mapper<BookEntity, BookDetailsViewModel>() {
         authors = value.authors,
         publisher = value.publisher,
         description = value.description,
-        price = value.price
+        price = value.price,
+        imageUrl = value.imageUrl
                      )
   }
 
@@ -28,7 +29,8 @@ class BookDetailsViewModelMapper : Mapper<BookEntity, BookDetailsViewModel>() {
         publisher = value.publisher,
         authors = value.authors,
         description = value.description,
-        price = value.price
+        price = value.price,
+        imageUrl = value.imageUrl
                                )
   }
 }

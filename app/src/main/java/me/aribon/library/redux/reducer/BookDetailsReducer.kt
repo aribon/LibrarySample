@@ -8,7 +8,7 @@ import me.aribon.library.redux.base.Reducer
  * Created by anthony.ribon
  * On 06/03/2019
  */
-class BookDetailsReducer()
+class BookDetailsReducer
   : Reducer<BookDetailsState, BookDetailsAction> {
 
   override fun reduce(oldState: BookDetailsState, action: BookDetailsAction): BookDetailsState {

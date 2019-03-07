@@ -11,5 +11,6 @@ data class BookDetailsViewModel(
     val publisher: String,
     val category: String,
     val description: String,
-    val price: Double
+    val price: Double,
+    val imageUrl: String
                                )

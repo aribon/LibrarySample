@@ -68,7 +68,7 @@ abstract class AppStore {
     fun <State: AppState, Subscriber : StoreSubscriber<State>> subscribe(subscriber: Subscriber) {
         val index = this.subscriptions.indexOfFirst { it === subscriber }
         if (index != -1) {
-            this.subscriptions.add(subscriber)
+//            this.subscriptions.add(subscriber)
         }
     }
 

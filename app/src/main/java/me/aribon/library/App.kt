@@ -21,7 +21,7 @@ class App : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    store = AppStore()
+//    store = AppStore()
   }
 
   fun getStore(): AppStore {
