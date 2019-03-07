@@ -11,7 +11,7 @@ import me.aribon.library_ui.model.mapper.BookItemViewModelMapper
  */
 class BookListPresenter(
     val view: BookListContract.View,
-    private val getBookList: GetBookList) :
+    private val getBookList: GetBookList = GetBookList()) :
     BaseAppPresenter(),
     BookListContract.Presenter {
 

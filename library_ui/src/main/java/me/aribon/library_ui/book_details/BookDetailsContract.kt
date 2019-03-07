@@ -2,6 +2,7 @@ package me.aribon.library_ui.book_details
 
 import me.aribon.library_ui.base.AppPresenter
 import me.aribon.library_ui.base.AppView
+import me.aribon.library_ui.model.BookDetailsViewModel
 
 /**
  * @Author: aribon
@@ -10,12 +11,7 @@ import me.aribon.library_ui.base.AppView
 interface BookDetailsContract {
 
     interface View: AppView<Presenter> {
-        fun renderTitle(title: String)
-        fun renderAuthor(author: String)
-        fun renderPublisher(publisher: String)
-        fun renderCategory(category: String)
-        fun renderDescription(description: String)
-        fun renderPrice(price: Double)
+        fun render(viewModel: BookDetailsViewModel, isLoading: Boolean)
     }
 
     interface Presenter: AppPresenter {

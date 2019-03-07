@@ -5,18 +5,48 @@ package me.aribon.redux
  * @Date: 04/03/2019
  */
 abstract class Store<S: State, in A: Action>(
-    val initialState: S,
-    val reducer: Reducer<S, A>) {
+    state: S,
+    private val reducer: Reducer<S, A>) {
 
-    protected var currentState: S = initialState
+    private var subscriptions: MutableList<StoreSubscriber<S>> = mutableListOf()
 
-    init {
+    private var _state: S? = state
+        set(value) {
+            val oldValue = field
+            field = value
 
+            value?.let {
+                subscriptions.forEach {
+                    it.onStateChange(value)
+                }
+            }
+        }
+
+    private val state: S
+        get() { return _state!! }
+
+    fun dispatch(action: A) {
+        val newState = applyReducers(action)
+        this._state = newState
     }
 
-    fun getState(): S {
-        return currentState
+    private fun applyReducers(action: A): S {
+        var state = state
+        state = reducer.reduce(state, action)
+        return state
     }
 
-    abstract fun dispatch(action: A)
+    fun <Subscriber: StoreSubscriber<S>> subscribe(subscriber: Subscriber) {
+        val index = this.subscriptions.indexOfFirst { it === subscriber }
+        if (index != -1) {
+            this.subscriptions.add(subscriber)
+        }
+    }
+
+    fun <Subscriber: StoreSubscriber<S>> unsubscribe(subscriber: Subscriber) {
+        val index = this.subscriptions.indexOfFirst { it === subscriber }
+        if (index != -1) {
+            this.subscriptions.removeAt(index)
+        }
+    }
 }

@@ -1,9 +1,11 @@
 package me.aribon.library_ui.book_details
 
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.content_book_details.*
 import me.aribon.core_ui.BaseFragment
 import me.aribon.library_ui.R
+import me.aribon.library_ui.model.BookDetailsViewModel
 
 /**
  * @Author: aribon
@@ -28,31 +30,26 @@ class BookDetailsFragment:
         BooksDetailsPresenter(this)
     }
 
-    override fun renderTitle(title: String) {
-        tvBookDetailsTitle.text = title
-    }
-
-    override fun renderAuthor(author: String) {
-        tvBookDetailsAuthor.text = author
-    }
-
-    override fun renderPublisher(publisher: String) {
-        tvBookDetailsPublisher.text = publisher
-    }
-
-    override fun renderCategory(category: String) {
-        tvBookDetailsCategory.text = category
-    }
-
-    override fun renderDescription(description: String) {
-        tvBookDetailsDescription.text = description
-    }
-
-    override fun renderPrice(price: Double) {
-        tvBookDetailsPrice.text = price.toString()
-    }
-
     override fun showError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun render(viewModel: BookDetailsViewModel, isLoading: Boolean) {
+        when {
+            isLoading -> {
+                viewBookDetails.visibility = View.GONE
+                progressBookDetails.visibility = View.VISIBLE
+            }
+            else -> {
+                progressBookDetails.visibility = View.GONE
+                viewBookDetails.visibility = View.VISIBLE
+                tvBookDetailsTitle.text = viewModel.title
+                tvBookDetailsAuthor.text = viewModel.authors.joinToString()
+                tvBookDetailsPublisher.text = viewModel.publisher
+                tvBookDetailsCategory.text = viewModel.category
+                tvBookDetailsDescription.text = viewModel.description
+                tvBookDetailsPrice.text = viewModel.price.toString()
+            }
+        }
     }
 }

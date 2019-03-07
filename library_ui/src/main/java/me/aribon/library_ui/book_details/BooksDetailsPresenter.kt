@@ -1,9 +1,10 @@
 package me.aribon.library_ui.book_details
 
+import com.insign.library_redux.state.BookDetailsState
 import me.aribon.library_domain.usecase.GetBook
 import me.aribon.library_ui.base.BaseAppPresenter
-import me.aribon.library_ui.model.BookDetailsViewModel
 import me.aribon.library_ui.model.mapper.BookDetailsViewModelMapper
+import me.aribon.redux.StoreSubscriber
 
 /**
  * @Author: aribon
@@ -11,9 +12,10 @@ import me.aribon.library_ui.model.mapper.BookDetailsViewModelMapper
  */
 class BooksDetailsPresenter(
     val view: BookDetailsContract.View,
-    private val getBook: GetBook) :
+    private val getBook: GetBook = GetBook()) :
     BaseAppPresenter(),
-    BookDetailsContract.Presenter {
+    BookDetailsContract.Presenter,
+    StoreSubscriber<BookDetailsState> {
 
     init {
         view.setPresenter(this)
@@ -27,23 +29,18 @@ class BooksDetailsPresenter(
 
     }
 
-    private fun setFields(booksDetailsViewModel: BookDetailsViewModel) {
-        view.renderTitle(booksDetailsViewModel.title)
-        view.renderAuthor(booksDetailsViewModel.authors.joinToString())
-        view.renderPublisher(booksDetailsViewModel.publisher)
-        view.renderCategory(booksDetailsViewModel.category)
-        view.renderDescription(booksDetailsViewModel.description)
-        view.renderPrice(booksDetailsViewModel.price)
-    }
-
     private fun getBook(bookId: String) {
         executeRequest(
             getBook.execute(bookId)
                 .map { BookDetailsViewModelMapper().fromEntity(it) }
                 .subscribe(
-                    { setFields(it) },
+                    {  },
                     { view.showError("Une erreur s'est produite") }
                 )
         )
+    }
+
+    override fun onStateChange(newState: BookDetailsState) {
+        view.render()
     }
 }

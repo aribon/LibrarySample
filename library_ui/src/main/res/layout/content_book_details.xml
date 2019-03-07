@@ -10,14 +10,28 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp">
 
+    <ProgressBar
+        android:id="@+id/progressBookDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        />
+
     <android.support.constraint.ConstraintLayout
+            android:id="@+id/viewBookDetails"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:minHeight="192dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:background="@android:color/white"
+            android:visibility="invisible"
+            tools:visibility="visible"
+        >
 
         <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/tvBookDetailsImage"
