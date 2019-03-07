@@ -25,6 +25,9 @@ class BooksDetailsPresenter(
   }
 
   override fun subscribe() {
+    super.subscribe()
+    App.instance.getStore().subscribe(this)
+
     val bookId =
         (view as BookDetailsFragment)
             .arguments
@@ -36,6 +39,8 @@ class BooksDetailsPresenter(
   }
 
   override fun unsubscribe() {
+      super.unsubscribe()
+      App.instance.getStore().unsubscribe(this)
   }
 
   private fun getBook(bookId: String) {

@@ -41,6 +41,16 @@ class CategoryListFragment :
     super.initializeView()
   }
 
+  override fun onStart() {
+    super.onStart()
+    presenter.subscribe()
+  }
+
+  override fun onStop() {
+    presenter.unsubscribe()
+    super.onStop()
+  }
+
   override fun render(categoryList: Array<CategoryItemViewModel>, isLoading: Boolean) {
     when {
       isLoading -> {

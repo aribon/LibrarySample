@@ -13,3 +13,15 @@
 .externalNativeBuild
 
 \.idea/
+
+core_data/build/
+
+core_ui/build/
+
+data_glose/build/
+
+library_domain/build/
+
+library_ui/build/
+
+redux/build/

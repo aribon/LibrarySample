@@ -44,6 +44,16 @@ class BookListFragment :
     BookListPresenter(this)
   }
 
+  override fun onStart() {
+    super.onStart()
+    presenter.subscribe()
+  }
+
+  override fun onStop() {
+    presenter.unsubscribe()
+    super.onStop()
+  }
+
   override fun render(bookList: Array<BookItemViewModel>, isLoading: Boolean) {
     when {
       isLoading -> {

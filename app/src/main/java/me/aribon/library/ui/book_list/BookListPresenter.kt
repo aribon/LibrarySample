@@ -29,6 +29,9 @@ class BookListPresenter(
   }
 
   override fun subscribe() {
+    super.subscribe()
+    App.instance.getStore().subscribe(this)
+
     val categoryId = (view as BookListFragment)
         .arguments
         ?.getString(BookListFragment.CATEGORY_LIST_CATEGORY_ID) ?: ""
@@ -38,8 +41,10 @@ class BookListPresenter(
         .dispatch(BookListAction.Fetch(categoryId))
   }
 
-  override fun unsubscribe() {
-  }
+    override fun unsubscribe() {
+        super.unsubscribe()
+        App.instance.getStore().unsubscribe(this)
+    }
 
   override fun onBookSelected(bookItemViewModel: BookItemViewModel) {
     App.instance

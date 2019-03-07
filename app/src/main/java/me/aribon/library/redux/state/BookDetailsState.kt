@@ -1,6 +1,5 @@
 package me.aribon.library.redux.state
 
-import me.aribon.library.redux.base.State
 import me.aribon.library.ui.model.BookDetailsViewModel
 
 /**
@@ -13,4 +12,4 @@ data class BookDetailsState(
     val isFetching: Boolean = false,
     val isRender: Boolean = false,
     val error: Throwable? = null)
-  : State
+  : AppState

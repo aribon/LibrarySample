@@ -50,6 +50,16 @@ class BookDetailsFragment :
     BooksDetailsPresenter(this)
   }
 
+  override fun onStart() {
+    super.onStart()
+    presenter.subscribe()
+  }
+
+  override fun onStop() {
+    presenter.unsubscribe()
+    super.onStop()
+  }
+
   override fun showError(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
         .show()

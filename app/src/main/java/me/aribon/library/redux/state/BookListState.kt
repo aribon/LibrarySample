@@ -1,6 +1,5 @@
 package me.aribon.library.redux.state
 
-import me.aribon.library.redux.base.State
 import me.aribon.library.ui.model.BookItemViewModel
 
 /**
@@ -16,4 +15,4 @@ data class BookListState(
     val isSelected: Boolean = false,
     val isNavigate: Boolean = false,
     val error: Throwable? = null)
-  : State
+  : AppState

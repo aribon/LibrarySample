@@ -28,13 +28,18 @@ class CategoryListPresenter(
   }
 
   override fun subscribe() {
+    super.subscribe()
+    App.instance.getStore().subscribe(this)
+
     App.instance
         .getStore()
         .dispatch(CategoryListAction.Fetch())
   }
 
-  override fun unsubscribe() {
-  }
+    override fun unsubscribe() {
+        super.unsubscribe()
+        App.instance.getStore().unsubscribe(this)
+    }
 
   override fun onCategorySelected(categoryItemViewModel: CategoryItemViewModel) {
     App.instance
