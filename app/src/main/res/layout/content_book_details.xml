@@ -43,6 +43,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+        <Space
+            android:id="@+id/spaceBookDetailsCategory1"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            app:layout_constraintTop_toBottomOf="@id/ivBookDetailsImage"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <TextView
                 android:id="@+id/tvBookDetailsTitle"
                 android:layout_width="wrap_content"
@@ -52,7 +59,7 @@
                 tools:textStyle="bold"
                 tools:textColor="@android:color/black"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@+id/ivBookDetailsImage"
+                app:layout_constraintTop_toBottomOf="@+id/spaceBookDetailsCategory1"
                 app:layout_constraintBottom_toTopOf="@id/tvCategoryItemBooksAvailable"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -91,7 +98,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
         <Space
-                android:id="@+id/spaceBookDetailsCategory1"
+                android:id="@+id/spaceBookDetailsCategory2"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 app:layout_constraintTop_toBottomOf="@id/tvBookDetailsCategory"
@@ -103,7 +110,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Lorem ipsum dolor sit amet"
                 tools:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/spaceBookDetailsCategory1"
+                app:layout_constraintTop_toBottomOf="@+id/spaceBookDetailsCategory2"
                 app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView

@@ -17,7 +17,9 @@ class Repository : LibraryRepository {
   override fun getCategoryList(): Single<Collection<CategoryEntity>> {
     return Service()
         .getCategoryList()
-        .map { CategoryMapper().map(it) }
+        .map {
+          CategoryMapper().map(it)
+        }
   }
 
   override fun getBookList(id: String): Single<Collection<String>> {

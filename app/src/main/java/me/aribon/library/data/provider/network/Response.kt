@@ -50,7 +50,7 @@ sealed class Response {
       @SerializedName("description")
       val description: String,
       @SerializedName("publisher")
-      val publisher: String,
+      val publisher: String?,
       @SerializedName("image")
       val image: String
                          ) : Response()

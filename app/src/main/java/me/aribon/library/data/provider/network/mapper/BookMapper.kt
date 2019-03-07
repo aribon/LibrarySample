@@ -17,7 +17,7 @@ class BookMapper : Mapper<BookEntity, BookResponse>() {
         value.title,
         value.shortTitle,
         value.authors.map { it.name },
-        value.publisher,
+        value.publisher ?: "",
         value.description,
         value.price?.amount?.toDouble() ?: 0.0,
         value.image

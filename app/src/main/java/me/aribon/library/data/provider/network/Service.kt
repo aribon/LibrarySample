@@ -29,6 +29,9 @@ class Service {
   fun getBookList(id: String): Single<Collection<String>> {
     return getApi(getBaseUrl())
         .getBookList(id)
+        .onErrorResumeNext {
+          error("WS")
+        }
         .subscribeOn(Schedulers.io())
   }
 
