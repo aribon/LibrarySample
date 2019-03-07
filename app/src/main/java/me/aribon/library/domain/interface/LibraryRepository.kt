@@ -10,6 +10,6 @@ import me.aribon.library.domain.model.CategoryEntity
  */
 interface LibraryRepository {
     fun getCategoryList(): Single<Collection<CategoryEntity>>
-    fun getBookList(id: String): Single<Collection<BookEntity>>
+    fun getBookList(id: String): Single<Collection<String>>
     fun getBook(id: String): Single<BookEntity>
 }

@@ -17,65 +17,75 @@ import me.aribon.library.redux.state.CategoryListState
  * @Author: aribon
  * @Date: 04/03/2019
  */
-abstract class AppStore {
+class AppStore(
+    state: AppState) {
 
-    private val categoryListReducer = CategoryListReducer()
-    private val bookListReducer = BookListReducer()
-    private val bookDetailsReducer = BookDetailsReducer()
+  private val categoryListReducer = CategoryListReducer()
+  private val bookListReducer = BookListReducer()
+  private val bookDetailsReducer = BookDetailsReducer()
 
-    private var subscriptions: MutableList<StoreSubscriber<AppState>> = mutableListOf()
+  private var subscriptions: MutableList<StoreSubscriber> = mutableListOf()
 
-    private var _state: AppState? = null
-        set(value) {
-            val oldValue = field
-            field = value
+  private var _state: AppState? = state
+    set(value) {
+      val oldValue = field
+      field = value
 
-            value?.let {
-                subscriptions.forEach {
-                    it.onStateChange(value)
-                }
-            }
+      value?.let {
+        subscriptions.forEach {
+          it.onStateChange(value)
         }
-
-    private val state: AppState
-        get() {
-            return _state!!
-        }
-
-    fun <A: AppAction> dispatch(action: A) {
-        val newState = applyReducers(action)
-        this._state = newState
+      }
     }
 
-    private fun <A: AppAction> applyReducers(action: A): AppState {
-        var state = state
-
-        when (action) {
-            is CategoryListAction -> {
-                state = categoryListReducer.reduce(state as CategoryListState, action)
-            }
-            is BookListAction -> {
-                state = bookListReducer.reduce(state as BookListState, action)
-            }
-            is BookDetailsAction -> {
-                state = bookDetailsReducer.reduce(state as BookDetailsState, action)
-            }
-        }
-
-        return state
+  private val state: AppState
+    get() {
+      return _state!!
     }
 
-    fun <State: AppState, Subscriber : StoreSubscriber<State>> subscribe(subscriber: Subscriber) {
-        val index = this.subscriptions.indexOfFirst { it === subscriber }
-        if (index != -1) {
-//            this.subscriptions.add(subscriber)
+  fun dispatch(action: AppAction) {
+    val newState = applyReducers(action)
+    this._state = newState
+  }
+
+  private fun applyReducers(action: AppAction): AppState {
+    var state = state
+
+    when (action) {
+      is CategoryListAction -> {
+        state = when (state) {
+          !is CategoryListState -> categoryListReducer.reduce(CategoryListState(), action)
+          else                -> categoryListReducer.reduce(state, action)
         }
+      }
+      is BookListAction     -> {
+        state = when (state) {
+          !is BookListState -> bookListReducer.reduce(BookListState(), action)
+          else              -> bookListReducer.reduce(state, action)
+        }
+      }
+      is BookDetailsAction  -> {
+        state = when (state) {
+          !is BookDetailsState -> bookDetailsReducer.reduce(BookDetailsState(), action)
+          else                  -> bookDetailsReducer.reduce(state, action)
+        }
+      }
     }
 
-    fun <State: AppState, Subscriber : StoreSubscriber<State>> unsubscribe(subscriber: Subscriber) {
-        val index = this.subscriptions.indexOfFirst { it === subscriber }
-        if (index != -1) {
-            this.subscriptions.removeAt(index)
-        }
+    return state
+  }
+
+  fun subscribe(subscriber: StoreSubscriber) {
+    val index = subscriptions.indexOfFirst { it === subscriber }
+    if (index == -1) {
+      this.subscriptions.add(subscriber)
     }
+  }
+
+  fun unsubscribe(subscriber: StoreSubscriber) {
+    val index = this.subscriptions.indexOfFirst { it === subscriber }
+    if (index != -1) {
+      this.subscriptions.removeAt(index)
+    }
+  }
 }

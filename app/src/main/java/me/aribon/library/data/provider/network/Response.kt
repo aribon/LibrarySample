@@ -46,7 +46,7 @@ sealed class Response {
       @SerializedName("title")
       val title: String,
       @SerializedName("price")
-      val price: PriceResponse,
+      val price: PriceResponse?,
       @SerializedName("description")
       val description: String,
       @SerializedName("publisher")

@@ -1,8 +1,11 @@
 package me.aribon.library.ui.category_list
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.content_category_list.pgCategoryList
 import kotlinx.android.synthetic.main.content_category_list.recyclerCategoryList
+import kotlinx.android.synthetic.main.content_category_list.viewCategoryList
 import me.aribon.library.R
 import me.aribon.library.ui.base.BaseFragment
 import me.aribon.library.ui.model.CategoryItemViewModel
@@ -54,11 +57,16 @@ class CategoryListFragment :
   override fun render(categoryList: Array<CategoryItemViewModel>, isLoading: Boolean) {
     when {
       isLoading -> {
-
+        viewCategoryList.visibility = View.GONE
+        pgCategoryList.visibility = View.VISIBLE
       }
       else -> {
+        pgCategoryList.visibility = View.GONE
+        viewCategoryList.visibility = View.VISIBLE
         val adapter = CategoryAdapter(requireContext(), categoryList, this)
-        recyclerCategoryList.layoutManager = LinearLayoutManager(requireContext())
+        val llm = LinearLayoutManager(requireContext())
+        llm.orientation = LinearLayoutManager.VERTICAL
+        recyclerCategoryList.layoutManager = llm
         recyclerCategoryList.adapter = adapter
       }
     }

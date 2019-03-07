@@ -23,17 +23,17 @@ interface Api {
     }
   }
 
-  @GET("/users/5a8411b53ed02c04187ff02a/shelves")
+  @GET("users/5a8411b53ed02c04187ff02a/shelves")
   fun getCategoryList()
       : Single<Collection<CategoryResponse>>
 
-  @GET("/shelves/{shelfId}/forms")
+  @GET("shelves/{shelfId}/forms")
   fun getBookList(
       @Path("shelfId")
       id: String)
-      : Single<Collection<BookResponse>>
+      : Single<Collection<String>>
 
-  @GET("/forms/{formId}")
+  @GET("forms/{formId}")
   fun getBook(
       @Path("formId")
       id: String)

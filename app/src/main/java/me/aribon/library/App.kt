@@ -1,6 +1,7 @@
 package me.aribon.library
 
 import android.app.Application
+import me.aribon.library.redux.state.LaunchState
 
 /**
  * @Author: aribon
@@ -21,7 +22,7 @@ class App : Application() {
 
   override fun onCreate() {
     super.onCreate()
-//    store = AppStore()
+    store = AppStore(LaunchState())
   }
 
   fun getStore(): AppStore {

@@ -2,8 +2,8 @@ package me.aribon.library.data.repository
 
 import io.reactivex.Single
 import me.aribon.library.data.provider.network.Service
-import me.aribon.library.data.repository.mapper.BookMapper
-import me.aribon.library.data.repository.mapper.CategoryMapper
+import me.aribon.library.data.provider.network.mapper.BookMapper
+import me.aribon.library.data.provider.network.mapper.CategoryMapper
 import me.aribon.library.domain.`interface`.LibraryRepository
 import me.aribon.library.domain.model.BookEntity
 import me.aribon.library.domain.model.CategoryEntity
@@ -20,15 +20,16 @@ class Repository : LibraryRepository {
         .map { CategoryMapper().map(it) }
   }
 
-  override fun getBookList(id: String): Single<Collection<BookEntity>> {
+  override fun getBookList(id: String): Single<Collection<String>> {
     return Service()
         .getBookList(id)
-        .map { BookMapper().map(it) }
   }
 
   override fun getBook(id: String): Single<BookEntity> {
     return Service()
         .getBook(id)
-        .map { BookMapper().map(it) }
+        .map {
+          BookMapper().map(it)
+        }
   }
 }

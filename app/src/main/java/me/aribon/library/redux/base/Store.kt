@@ -8,7 +8,7 @@ abstract class Store<S : State, in A : Action>(
     state: S,
     private val reducer: Reducer<S, A>) {
 
-  private var subscriptions: MutableList<StoreSubscriber<S>> = mutableListOf()
+  private var subscriptions: MutableList<StoreSubscriber> = mutableListOf()
 
   private var _state: S? = state
     set(value) {
@@ -38,14 +38,14 @@ abstract class Store<S : State, in A : Action>(
     return state
   }
 
-  fun <Subscriber : StoreSubscriber<S>> subscribe(subscriber: Subscriber) {
+  fun <Subscriber : StoreSubscriber> subscribe(subscriber: Subscriber) {
     val index = this.subscriptions.indexOfFirst { it === subscriber }
     if (index != -1) {
       this.subscriptions.add(subscriber)
     }
   }
 
-  fun <Subscriber : StoreSubscriber<S>> unsubscribe(subscriber: Subscriber) {
+  fun <Subscriber : StoreSubscriber> unsubscribe(subscriber: Subscriber) {
     val index = this.subscriptions.indexOfFirst { it === subscriber }
     if (index != -1) {
       this.subscriptions.removeAt(index)

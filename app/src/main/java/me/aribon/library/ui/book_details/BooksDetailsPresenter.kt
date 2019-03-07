@@ -1,8 +1,10 @@
 package me.aribon.library.ui.book_details
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aribon.library.App
 import me.aribon.library.data.repository.Repository
 import me.aribon.library.redux.action.BookDetailsAction
+import me.aribon.library.redux.base.State
 import me.aribon.library.redux.state.BookDetailsState
 import me.aribon.library.ui.base.BaseAppPresenter
 import me.aribon.library.ui.model.mapper.BookDetailsViewModelMapper
@@ -18,7 +20,7 @@ class BooksDetailsPresenter(
     private val getBook: GetBook = GetBook(Repository())) :
     BaseAppPresenter(),
     BookDetailsContract.Presenter,
-    StoreSubscriber<BookDetailsState> {
+    StoreSubscriber {
 
   init {
     view.setPresenter(this)
@@ -46,6 +48,7 @@ class BooksDetailsPresenter(
   private fun getBook(bookId: String) {
     executeRequest(
         getBook.execute(bookId)
+            .observeOn(AndroidSchedulers.mainThread())
             .map { BookDetailsViewModelMapper().fromEntity(it) }
             .subscribe(
                 {
@@ -60,13 +63,17 @@ class BooksDetailsPresenter(
                   )
   }
 
-  override fun onStateChange(newState: BookDetailsState) {
-    when {
-      newState.isFetching -> {
-        view.render(newState.viewModel, true)
-        getBook(newState.bookId)
+  override fun onStateChange(newState: State) {
+    when (newState) {
+      is BookDetailsState -> {
+        when {
+          newState.isFetching -> {
+            view.render(newState.viewModel, true)
+            getBook(newState.bookId)
+          }
+          newState.isRender   -> view.render(newState.viewModel, false)
+        }
       }
-      newState.isRender   -> view.render(newState.viewModel, false)
     }
   }
 }

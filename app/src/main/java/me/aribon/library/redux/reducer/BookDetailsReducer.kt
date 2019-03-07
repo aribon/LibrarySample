@@ -17,14 +17,14 @@ class BookDetailsReducer
       is BookDetailsAction.Fetch    -> {
         state = state.copy(
             viewModel = state.viewModel,
-            bookId = state.bookId,
+            bookId = action.bookId,
             isFetching = true,
             isRender = false,
             error = null)
       }
       is BookDetailsAction.Display  -> {
         state = state.copy(
-            viewModel = state.viewModel,
+            viewModel = action.viewModel,
             bookId = state.bookId,
             isFetching = false,
             isRender = true,

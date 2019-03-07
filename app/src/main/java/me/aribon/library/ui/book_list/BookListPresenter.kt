@@ -1,10 +1,12 @@
 package me.aribon.library.ui.book_list
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aribon.library.App
 import me.aribon.library.data.repository.Repository
 import me.aribon.library.domain.usecase.GetBookList
 import me.aribon.library.redux.action.BookListAction
 import me.aribon.library.redux.action.BookListAction.Navigate
+import me.aribon.library.redux.base.State
 import me.aribon.library.redux.base.StoreSubscriber
 import me.aribon.library.redux.state.BookListState
 import me.aribon.library.route.Router
@@ -22,7 +24,7 @@ class BookListPresenter(
     private val getBookList: GetBookList = GetBookList(Repository())) :
     BaseAppPresenter(),
     BookListContract.Presenter,
-    StoreSubscriber<BookListState> {
+    StoreSubscriber {
 
   init {
     view.setPresenter(this)
@@ -55,6 +57,7 @@ class BookListPresenter(
   private fun getBookList(categoryId: String) {
     executeRequest(
         getBookList.execute(categoryId)
+            .observeOn(AndroidSchedulers.mainThread())
             .map { BookItemViewModelMapper().fromEntity(it) }
             .subscribe(
                 {
@@ -62,24 +65,30 @@ class BookListPresenter(
                       .getStore()
                       .dispatch(BookListAction.Display(it))
                 },
-                { view.showError("Une erreur s'est produite") }
+                {
+                  view.showError("Une erreur s'est produite")
+                }
                       )
                   )
   }
 
-  override fun onStateChange(newState: BookListState) {
-    when {
-      newState.isFetching -> {
-        view.render(newState.viewModelList.toTypedArray(), true)
-        getBookList(newState.categoryId)
+  override fun onStateChange(newState: State) {
+    when (newState){
+      is BookListState -> {
+        when {
+          newState.isFetching -> {
+            view.render(newState.viewModelList.toTypedArray(), true)
+            getBookList(newState.categoryId)
+          }
+          newState.isRender   -> view.render(newState.viewModelList.toTypedArray(), false)
+          newState.isSelected -> App.instance
+              .getStore()
+              .dispatch(Navigate(newState.bookSelectedId))
+          newState.isNavigate -> Router().openFragment(
+              (view as BookListFragment),
+              BookDetailsFragment.newInstance(newState.bookSelectedId))
+        }
       }
-      newState.isRender   -> view.render(newState.viewModelList.toTypedArray(), false)
-      newState.isSelected -> App.instance
-          .getStore()
-          .dispatch(Navigate(newState.bookSelectedId))
-      newState.isNavigate -> Router().openFragment(
-          (view as BookListFragment),
-          BookDetailsFragment.newInstance(newState.bookSelectedId))
     }
   }
 }

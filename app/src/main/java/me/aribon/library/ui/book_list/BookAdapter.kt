@@ -31,9 +31,9 @@ class BookAdapter(
 
   override fun onCreateViewHolder(parent: ViewGroup,
                                   viewType: Int): CategoryViewHolder {
-    val textView = LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_category, parent, false) as TextView
-    return CategoryViewHolder(textView)
+    val view = LayoutInflater.from(parent.context)
+        .inflate(R.layout.item_book, parent, false)
+    return CategoryViewHolder(view)
   }
 
   override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {

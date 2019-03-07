@@ -1,7 +1,8 @@
-package me.aribon.library.data.repository.mapper
+package me.aribon.library.data.provider.network.mapper
 
 import me.aribon.library.data.provider.network.Response
 import me.aribon.library.data.provider.network.Response.BookResponse
+import me.aribon.library.data.repository.mapper.Mapper
 import me.aribon.library.domain.model.BookEntity
 
 /**
@@ -18,7 +19,7 @@ class BookMapper : Mapper<BookEntity, BookResponse>() {
         value.authors.map { it.name },
         value.publisher,
         value.description,
-        value.price.amount.toDouble(),
+        value.price?.amount?.toDouble() ?: 0.0,
         value.image
                      )
   }

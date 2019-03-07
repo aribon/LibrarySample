@@ -1,9 +1,11 @@
 package me.aribon.library.ui.category_list
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aribon.library.App
 import me.aribon.library.data.repository.Repository
 import me.aribon.library.domain.usecase.GetCategoryList
 import me.aribon.library.redux.action.CategoryListAction
+import me.aribon.library.redux.base.State
 import me.aribon.library.redux.base.StoreSubscriber
 import me.aribon.library.redux.state.CategoryListState
 import me.aribon.library.route.Router
@@ -21,7 +23,7 @@ class CategoryListPresenter(
     private val getCategoryList: GetCategoryList = GetCategoryList(Repository()))
   : BaseAppPresenter(),
     CategoryListContract.Presenter,
-    StoreSubscriber<CategoryListState> {
+    StoreSubscriber {
 
   init {
     view.setPresenter(this)
@@ -50,6 +52,7 @@ class CategoryListPresenter(
   private fun getCategoryList() {
     executeRequest(
         getCategoryList.execute()
+            .observeOn(AndroidSchedulers.mainThread())
             .map { CategoryItemViewModelMapper().fromEntity(it) }
             .subscribe(
                 {
@@ -64,19 +67,23 @@ class CategoryListPresenter(
                   )
   }
 
-  override fun onStateChange(newState: CategoryListState) {
-    when {
-      newState.isFetching -> {
-        view.render(newState.viewModelList.toTypedArray(), true)
-        getCategoryList()
+  override fun onStateChange(newState: State) {
+    when (newState) {
+      is CategoryListState -> {
+        when {
+          newState.isFetching -> {
+            view.render(newState.viewModelList.toTypedArray(), true)
+            getCategoryList()
+          }
+          newState.isRender   -> view.render(newState.viewModelList.toTypedArray(), false)
+          newState.isSelected -> App.instance
+              .getStore()
+              .dispatch(CategoryListAction.Navigate(newState.categorySelectedId))
+          newState.isNavigate -> Router().openFragment(
+              (view as CategoryListFragment),
+              BookListFragment.newInstance(newState.categorySelectedId))
+        }
       }
-      newState.isRender   -> view.render(newState.viewModelList.toTypedArray(), false)
-      newState.isSelected -> App.instance
-          .getStore()
-          .dispatch(CategoryListAction.Navigate(newState.categorySelectedId))
-      newState.isNavigate -> Router().openFragment(
-          (view as CategoryListFragment),
-          BookListFragment.newInstance(newState.categorySelectedId))
     }
   }
 }

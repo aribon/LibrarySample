@@ -26,7 +26,7 @@ class CategoryListReducer
       }
       is CategoryListAction.Display  -> {
         state = state.copy(
-            viewModelList = state.viewModelList,
+            viewModelList = action.viewModel,
             categorySelectedId = state.categorySelectedId,
             isFetching = false,
             isRender = true,
@@ -37,17 +37,17 @@ class CategoryListReducer
       is CategoryListAction.Select   -> {
         state = state.copy(
             viewModelList = state.viewModelList,
-            categorySelectedId = state.categorySelectedId,
+            categorySelectedId = action.categoryId,
             isFetching = false,
             isRender = false,
             isSelected = true,
             isNavigate = false,
             error = null)
       }
-      is CategoryListAction.Navigate -> { //TODO path route
+      is CategoryListAction.Navigate -> {
         state = state.copy(
             viewModelList = state.viewModelList,
-            categorySelectedId = state.categorySelectedId,
+            categorySelectedId = action.categoryId,
             isFetching = false,
             isRender = false,
             isSelected = false,

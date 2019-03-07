@@ -15,7 +15,8 @@ class BookItemViewModelMapper : Mapper<BookEntity, BookItemViewModel>() {
         title = value.title,
         authors = value.authors,
         publisher = value.publisher,
-        price = value.price
+        price = value.price,
+        imageUrl = value.imageUrl
                      )
   }
 
@@ -25,7 +26,8 @@ class BookItemViewModelMapper : Mapper<BookEntity, BookItemViewModel>() {
         title = value.title,
         publisher = value.publisher,
         authors = value.authors,
-        price = value.price
+        price = value.price,
+        imageUrl = value.imageUrl
                             )
   }
 }

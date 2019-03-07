@@ -33,6 +33,7 @@ class BookDetailsFragment :
       val fragment = BookDetailsFragment()
       val bundle = Bundle()
       bundle.putString(BOOK_DETAILS_BOOK_ID, bookId)
+      fragment.arguments = bundle
       return fragment
     }
   }

@@ -2,8 +2,11 @@ package me.aribon.library.ui.book_list
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.content_book_list.pgBookList
 import kotlinx.android.synthetic.main.content_book_list.recyclerBookList
+import kotlinx.android.synthetic.main.content_book_list.viewBookList
 import me.aribon.library.R
 import me.aribon.library.ui.base.BaseFragment
 import me.aribon.library.ui.model.BookItemViewModel
@@ -25,6 +28,7 @@ class BookListFragment :
       val fragment = BookListFragment()
       val bundle = Bundle()
       bundle.putString(CATEGORY_LIST_CATEGORY_ID, bookId)
+      fragment.arguments = bundle
       return fragment
     }
   }
@@ -57,11 +61,16 @@ class BookListFragment :
   override fun render(bookList: Array<BookItemViewModel>, isLoading: Boolean) {
     when {
       isLoading -> {
-
+        viewBookList.visibility = View.GONE
+        pgBookList.visibility = View.VISIBLE
       }
       else -> {
+        pgBookList.visibility = View.GONE
+        viewBookList.visibility = View.VISIBLE
         val adapter = BookAdapter(requireContext(), bookList, this)
-        recyclerBookList.layoutManager = LinearLayoutManager(requireContext())
+        val llm = LinearLayoutManager(requireContext())
+        llm.orientation = LinearLayoutManager.VERTICAL
+        recyclerBookList.layoutManager = llm
         recyclerBookList.adapter = adapter
       }
     }

@@ -26,7 +26,7 @@ class Service {
         .subscribeOn(Schedulers.io())
   }
 
-  fun getBookList(id: String): Single<Collection<Response.BookResponse>> {
+  fun getBookList(id: String): Single<Collection<String>> {
     return getApi(getBaseUrl())
         .getBookList(id)
         .subscribeOn(Schedulers.io())

@@ -17,7 +17,7 @@ class BookListReducer
       is BookListAction.Fetch    -> {
         state = state.copy(
             viewModelList = state.viewModelList,
-            categoryId = state.categoryId,
+            categoryId = action.categoryId,
             bookSelectedId = state.categoryId,
             isFetching = true,
             isRender = false,
@@ -27,7 +27,7 @@ class BookListReducer
       }
       is BookListAction.Display  -> {
         state = state.copy(
-            viewModelList = state.viewModelList,
+            viewModelList = action.viewModel,
             categoryId = state.categoryId,
             bookSelectedId = state.categoryId,
             isFetching = false,
@@ -40,18 +40,18 @@ class BookListReducer
         state = state.copy(
             viewModelList = state.viewModelList,
             categoryId = state.categoryId,
-            bookSelectedId = state.categoryId,
+            bookSelectedId = action.bookId,
             isFetching = false,
             isRender = false,
             isSelected = true,
             isNavigate = false,
             error = null)
       }
-      is BookListAction.Navigate -> { //TODO path route
+      is BookListAction.Navigate -> {
         state = state.copy(
             viewModelList = state.viewModelList,
             categoryId = state.categoryId,
-            bookSelectedId = state.categoryId,
+            bookSelectedId = action.bookId,
             isFetching = false,
             isRender = false,
             isSelected = false,
