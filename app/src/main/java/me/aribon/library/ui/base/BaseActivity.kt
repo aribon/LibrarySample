@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
  * @Author: aribon
  * @Date: 05/03/2019
  */
-open class BaseActivity : AppCompatActivity() {
+open abstract class BaseActivity : AppCompatActivity() {
+
+  protected abstract fun getLayoutRessource(): Int
 
   protected open fun findViews() {
   }
@@ -23,6 +25,7 @@ open class BaseActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    setContentView(getLayoutRessource())
     initializePresenter()
     findViews()
     initializeData()
