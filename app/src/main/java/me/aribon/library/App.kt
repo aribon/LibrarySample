@@ -6,27 +6,25 @@ import android.app.Application
  * @Author: aribon
  * @Date: 05/03/2019
  */
-class App: Application() {
+class App : Application() {
 
-    companion object {
-        lateinit var instance: App
-            private set
-    }
+  companion object {
+    lateinit var instance: App
+      private set
+  }
 
-    private lateinit var store: AppStore
+  private lateinit var store: AppStore
 
-    init {
-        instance = this
-    }
+  init {
+    instance = this
+  }
 
-    override fun onCreate() {
-        super.onCreate()
-        store = AppStore()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    store = AppStore()
+  }
 
-    fun getStore(): AppStore {
-        return store
-    }
-
-
+  fun getStore(): AppStore {
+    return store
+  }
 }
