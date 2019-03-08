@@ -6,5 +6,6 @@ package me.aribon.library.domain.model
  */
 data class CategoryEntity(
     val id: String,
-    val label: String
+    val label: String,
+    val bookAvailable: Int
 )

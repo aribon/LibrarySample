@@ -12,7 +12,8 @@ class CategoryItemViewModelMapper : Mapper<CategoryEntity, CategoryItemViewModel
   override fun toEntity(value: CategoryItemViewModel): CategoryEntity {
     return CategoryEntity(
         value.id,
-        value.categoryLabel
+        value.categoryLabel,
+        value.booksAvailable
                          )
   }
 
@@ -20,7 +21,7 @@ class CategoryItemViewModelMapper : Mapper<CategoryEntity, CategoryItemViewModel
     return CategoryItemViewModel(
         value.id,
         value.label,
-        0
+        value.bookAvailable
                                 )
   }
 }

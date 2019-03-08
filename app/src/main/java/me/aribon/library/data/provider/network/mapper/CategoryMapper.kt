@@ -14,7 +14,8 @@ class CategoryMapper : Mapper<CategoryEntity, CategoryResponse>() {
   override fun map(value: Response.CategoryResponse): CategoryEntity {
     return CategoryEntity(
         value.id,
-        value.label
+        value.label,
+        0
                          )
   }
 }
