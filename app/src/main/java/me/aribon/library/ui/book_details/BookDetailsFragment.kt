@@ -1,6 +1,8 @@
 package me.aribon.library.ui.book_details
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -81,6 +83,11 @@ class BookDetailsFragment :
         tvBookDetailsAuthor.text = viewModel?.authors?.joinToString()
         tvBookDetailsPublisher.text = viewModel?.publisher
         tvBookDetailsCategory.text = viewModel?.category
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+          tvBookDetailsDescription.text = Html.fromHtml(viewModel?.description, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+          tvBookDetailsDescription.text = Html.fromHtml(viewModel?.description)
+        }
         tvBookDetailsDescription.text = viewModel?.description
         tvBookDetailsPrice.text = viewModel?.price.toString()
         Glide.with(this)
