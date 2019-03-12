@@ -1,6 +1,7 @@
 package me.aribon.library.ui.book_list
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -76,7 +77,7 @@ class BookListFragment :
         pgBookList.visibility = View.GONE
         viewBookList.visibility = View.VISIBLE
         val adapter = BookAdapter(requireContext(), bookList, this)
-        val llm = LinearLayoutManager(requireContext())
+        val llm = GridLayoutManager(requireContext(), 2)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerBookList.layoutManager = llm
         recyclerBookList.adapter = adapter

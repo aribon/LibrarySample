@@ -11,8 +11,8 @@
   <string name="tui_book_list_title">"Books"</string>
 
   <string name="tui_book_item_title">"%1$s"</string>
-  <string name="tui_book_item_author">"Author: %1$s"</string>
-  <string name="tui_book_item_publisher">"Publisher: %1$s"</string>
+  <string name="tui_book_item_author">"%1$s"</string>
+  <string name="tui_book_item_publisher">"%1$s"</string>
   <string name="tui_book_item_price">"%1$.2f Eur"</string>
 
   <string name="tui_book_details_title">"%1$s"</string>
