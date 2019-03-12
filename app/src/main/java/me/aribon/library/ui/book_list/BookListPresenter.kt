@@ -2,6 +2,7 @@ package me.aribon.library.ui.book_list
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aribon.library.App
+import me.aribon.library.R
 import me.aribon.library.data.repository.Repository
 import me.aribon.library.domain.usecase.GetBookList
 import me.aribon.library.redux.action.BookListAction
@@ -86,7 +87,8 @@ class BookListPresenter(
               .dispatch(Navigate(newState.bookSelectedId))
           newState.isNavigate -> Router().openFragment(
               (view as BookListFragment),
-              BookDetailsFragment.newInstance(newState.bookSelectedId))
+              BookDetailsFragment.newInstance(newState.bookSelectedId)
+                                                      )
         }
       }
     }

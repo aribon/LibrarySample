@@ -2,12 +2,14 @@ package me.aribon.library.ui.book_list
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import kotlinx.android.synthetic.main.content_book_list.pgBookList
 import kotlinx.android.synthetic.main.content_book_list.recyclerBookList
-import kotlinx.android.synthetic.main.content_book_list.tvBookListTitle
 import kotlinx.android.synthetic.main.content_book_list.viewBookList
+import kotlinx.android.synthetic.main.toolbar.toolbar_title
 import me.aribon.library.R
 import me.aribon.library.ui.base.BaseFragment
 import me.aribon.library.ui.model.BookItemViewModel
@@ -51,7 +53,7 @@ class BookListFragment :
 
   override fun initializeView() {
     super.initializeView()
-    tvBookListTitle.text = String.format(getString(R.string.tui_book_list_title))
+//    toolbar_title.text = String.format(getString(R.string.tui_book_list_title))
   }
 
   override fun onStart() {
@@ -78,6 +80,7 @@ class BookListFragment :
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerBookList.layoutManager = llm
         recyclerBookList.adapter = adapter
+        runLayoutAnimation(recyclerBookList)
       }
     }
   }
@@ -89,5 +92,15 @@ class BookListFragment :
 
   override fun onBookItemClick(bookItemViewModel: BookItemViewModel) {
     presenter.onBookSelected(bookItemViewModel)
+  }
+
+  private fun runLayoutAnimation(recyclerView: RecyclerView) {
+    val context = recyclerView.context
+    val controller = AnimationUtils
+        .loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+
+    recyclerView.layoutAnimation = controller
+    recyclerView.adapter!!.notifyDataSetChanged()
+    recyclerView.scheduleLayoutAnimation()
   }
 }

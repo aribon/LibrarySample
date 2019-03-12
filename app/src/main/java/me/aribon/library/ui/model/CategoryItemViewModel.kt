@@ -9,3 +9,4 @@ data class CategoryItemViewModel(
     val categoryLabel: String,
     val booksAvailable: Int
                                 )
+

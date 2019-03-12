@@ -1,7 +1,9 @@
 package me.aribon.library.route
 
+import me.aribon.library.R
 import me.aribon.library.ui.base.BaseActivity
 import me.aribon.library.ui.base.BaseFragment
+import me.aribon.library.ui.category_list.CategoryListFragment
 
 /**
  * Created by anthony.ribon
@@ -16,7 +18,7 @@ class Router {
         .beginTransaction()
         .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
                              android.R.anim.fade_in, android.R.anim.fade_out)
-        .replace(android.R.id.content, fragment)
+        .replace(R.id.mainFragmentContainer, fragment)
         .addToBackStack(null)
         .commit()
   }
@@ -28,8 +30,16 @@ class Router {
         .beginTransaction()
         .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
                              android.R.anim.fade_in, android.R.anim.fade_out)
-        .replace(android.R.id.content, fragment)
+        .replace(R.id.mainFragmentContainer, fragment)
         .addToBackStack(null)
         .commit()
+  }
+
+  fun onBackPressed(baseActivity: BaseActivity) {
+    val fm = baseActivity.supportFragmentManager
+    if (fm.findFragmentById(R.id.mainFragmentContainer) is CategoryListFragment)
+      baseActivity.finish()
+    else
+      fm.popBackStack()
   }
 }

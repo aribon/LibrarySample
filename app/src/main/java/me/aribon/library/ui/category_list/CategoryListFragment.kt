@@ -1,11 +1,12 @@
 package me.aribon.library.ui.category_list
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import kotlinx.android.synthetic.main.content_category_list.pgCategoryList
 import kotlinx.android.synthetic.main.content_category_list.recyclerCategoryList
-import kotlinx.android.synthetic.main.content_category_list.tvCategoryListTitle
 import kotlinx.android.synthetic.main.content_category_list.viewCategoryList
 import me.aribon.library.R
 import me.aribon.library.ui.base.BaseFragment
@@ -43,7 +44,7 @@ class CategoryListFragment :
 
   override fun initializeView() {
     super.initializeView()
-    tvCategoryListTitle.text = String.format(getString(R.string.tui_category_list_title))
+    //    toolbar_title.text = String.format(getString(R.string.tui_category_list_title))
   }
 
   override fun onStart() {
@@ -62,7 +63,7 @@ class CategoryListFragment :
         viewCategoryList.visibility = View.GONE
         pgCategoryList.visibility = View.VISIBLE
       }
-      else -> {
+      else      -> {
         pgCategoryList.visibility = View.GONE
         viewCategoryList.visibility = View.VISIBLE
         val adapter = CategoryAdapter(requireContext(), categoryList, this)
@@ -70,6 +71,7 @@ class CategoryListFragment :
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerCategoryList.layoutManager = llm
         recyclerCategoryList.adapter = adapter
+        runLayoutAnimation(recyclerCategoryList)
       }
     }
   }
@@ -81,5 +83,15 @@ class CategoryListFragment :
 
   override fun onCategoryItemClick(categoryItemViewModel: CategoryItemViewModel) {
     presenter.onCategorySelected(categoryItemViewModel)
+  }
+
+  private fun runLayoutAnimation(recyclerView: RecyclerView) {
+    val context = recyclerView.context
+    val controller = AnimationUtils
+        .loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+
+    recyclerView.layoutAnimation = controller
+    recyclerView.adapter!!.notifyDataSetChanged()
+    recyclerView.scheduleLayoutAnimation()
   }
 }
