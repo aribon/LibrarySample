@@ -18,7 +18,7 @@ class GetBookList(private val repository: LibraryRepository) {
                     .flatMapSingle { repository.getBook(it) }
                     .toList()
             }.map {
-              it.sortBy { it.id }
+              it.sortBy { it.title }
               it
             }
     }

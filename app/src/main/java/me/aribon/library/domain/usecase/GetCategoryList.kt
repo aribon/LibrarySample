@@ -21,5 +21,9 @@ class GetCategoryList(private val repository: LibraryRepository) {
                     }
                     .toList()
             }
+            .map {
+              it.sortBy { it.label }
+              it
+            }
     }
 }
