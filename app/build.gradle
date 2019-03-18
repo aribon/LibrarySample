@@ -22,10 +22,26 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+  flavorDimensions "media"
+  productFlavors {
+    book {
+      dimension "media"
+    }
+    movie {
+      dimension "media"
+    }
+  }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  bookImplementation project(':data_glose')
+  movieImplementation project(':data_omdb')
+
+  implementation project(':domain_library')
+  implementation project(':presentation_library')
+  implementation project(':redux')
 
   implementation "com.android.support:appcompat-v7:${libraries.supportVersion}"
   implementation "com.android.support:design:${libraries.supportVersion}"

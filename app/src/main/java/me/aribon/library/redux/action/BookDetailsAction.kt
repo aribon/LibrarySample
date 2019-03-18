@@ -1,6 +1,6 @@
 package me.aribon.library.redux.action
 
-import me.aribon.library.ui.model.BookDetailsViewModel
+import me.aribon.library.ui.model.MediaDetailsViewModel
 
 /**
  * Created by anthony.ribon
@@ -8,6 +8,6 @@ import me.aribon.library.ui.model.BookDetailsViewModel
  */
 sealed class BookDetailsAction : AppAction {
   class Fetch(val bookId: String) : BookDetailsAction()
-  class Display(val viewModel: BookDetailsViewModel) : BookDetailsAction()
+  class Display(val viewModel: MediaDetailsViewModel) : BookDetailsAction()
   class Navigate : BookDetailsAction()
 }

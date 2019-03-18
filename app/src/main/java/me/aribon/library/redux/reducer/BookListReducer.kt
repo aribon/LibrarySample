@@ -2,14 +2,13 @@ package me.aribon.library.redux.reducer
 
 import me.aribon.library.redux.action.BookListAction
 import me.aribon.library.redux.state.BookListState
-import me.aribon.library.redux.base.Reducer
 
 /**
  * Created by anthony.ribon
  * On 06/03/2019
  */
 class BookListReducer
-  : Reducer<BookListState, BookListAction> {
+  : AppReducer<BookListState, BookListAction> {
 
   override fun reduce(oldState: BookListState, action: BookListAction): BookListState {
     var state = oldState

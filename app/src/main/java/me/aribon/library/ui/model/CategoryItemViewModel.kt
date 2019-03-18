@@ -7,6 +7,6 @@ package me.aribon.library.ui.model
 data class CategoryItemViewModel(
     val id: String,
     val categoryLabel: String,
-    val booksAvailable: Int
+    val mediasAvailable: Int
                                 )
 

@@ -1,6 +1,6 @@
 package me.aribon.library.redux.action
 
-import me.aribon.library.redux.base.Action
+import me.aribon.redux.core.Action
 
 /**
  * @Author: aribon

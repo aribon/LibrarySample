@@ -1,6 +1,6 @@
 package me.aribon.library.redux.state
 
-import me.aribon.library.redux.base.State
+import me.aribon.redux.core.State
 
 /**
  * @Author: aribon

@@ -1,9 +1,9 @@
 package me.aribon.library.route
 
 import me.aribon.library.R
-import me.aribon.library.ui.base.BaseActivity
-import me.aribon.library.ui.base.BaseFragment
-import me.aribon.library.ui.category_list.CategoryListFragment
+import me.aribon.library.ui.base.AppActivity
+import me.aribon.library.ui.base.AppFragment
+import me.aribon.library.ui.category.list.CategoryListFragment
 
 /**
  * Created by anthony.ribon
@@ -11,7 +11,7 @@ import me.aribon.library.ui.category_list.CategoryListFragment
  */
 class Router {
 
-  fun <A: BaseActivity, F: BaseFragment> openFragment(activity: A, fragment: F) {
+  fun <A: AppActivity, F: AppFragment> openFragment(activity: A, fragment: F) {
 
     activity
         .supportFragmentManager
@@ -23,7 +23,7 @@ class Router {
         .commit()
   }
 
-  fun <F: BaseFragment> openFragment(currentFragment: F, fragment: F) {
+  fun <F: AppFragment> openFragment(currentFragment: F, fragment: F) {
 
     currentFragment.requireActivity()
         .supportFragmentManager
@@ -35,7 +35,7 @@ class Router {
         .commit()
   }
 
-  fun onBackPressed(baseActivity: BaseActivity) {
+  fun onBackPressed(baseActivity: AppActivity) {
     val fm = baseActivity.supportFragmentManager
     if (fm.findFragmentById(R.id.mainFragmentContainer) is CategoryListFragment)
       baseActivity.finish()

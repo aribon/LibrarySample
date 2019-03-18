@@ -2,14 +2,13 @@ package me.aribon.library.redux.reducer
 
 import me.aribon.library.redux.action.CategoryListAction
 import me.aribon.library.redux.state.CategoryListState
-import me.aribon.library.redux.base.Reducer
 
 /**
  * Created by anthony.ribon
  * On 06/03/2019
  */
 class CategoryListReducer
-  : Reducer<CategoryListState, CategoryListAction> {
+  : AppReducer<CategoryListState, CategoryListAction> {
 
   override fun reduce(oldState: CategoryListState, action: CategoryListAction): CategoryListState {
     var state = oldState

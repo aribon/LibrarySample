@@ -1,6 +1,7 @@
 package me.aribon.library
 
 import android.app.Application
+import me.aribon.library.redux.store.AppStore
 import me.aribon.library.redux.state.LaunchState
 
 /**

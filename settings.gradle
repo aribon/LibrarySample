@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':data', ':data_glose', ':domain', ':domain_library', ':redux', ':presentation',
+    ':presentation_library', ':data_omdb'
