@@ -1,7 +1,7 @@
 package me.aribon.library.ui.media.list
 
 import io.reactivex.android.schedulers.AndroidSchedulers
-import me.aribon.domain_library.usecase.GetBookList
+import me.aribon.domain_library.usecase.GetMediaList
 import me.aribon.library.App
 import me.aribon.library.data.repository.AppRepository
 import me.aribon.library.redux.action.BookListAction
@@ -21,7 +21,7 @@ import me.aribon.redux.core.StoreSubscriber
  */
 class MediaListPresenter(
     val view: MediaListContract.View,
-    private val getBookList: GetBookList = GetBookList(AppRepository())) :
+    private val getBookList: GetMediaList = GetMediaList(AppRepository())) :
     BaseAppPresenter(),
     MediaListContract.Presenter,
     StoreSubscriber {

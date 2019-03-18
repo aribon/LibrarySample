@@ -1,7 +1,7 @@
 package me.aribon.library.ui.media.details
 
 import io.reactivex.android.schedulers.AndroidSchedulers
-import me.aribon.domain_library.usecase.GetBook
+import me.aribon.domain_library.usecase.GetMedia
 import me.aribon.library.App
 import me.aribon.library.data.repository.AppRepository
 import me.aribon.library.redux.action.BookDetailsAction
@@ -17,7 +17,7 @@ import me.aribon.redux.core.StoreSubscriber
  */
 class MediaDetailsPresenter(
     val view: MediaDetailsContract.View,
-    private val getBook: GetBook = GetBook(AppRepository())) :
+    private val getBook: GetMedia = GetMedia(AppRepository())) :
     BaseAppPresenter(),
     MediaDetailsContract.Presenter,
     StoreSubscriber {

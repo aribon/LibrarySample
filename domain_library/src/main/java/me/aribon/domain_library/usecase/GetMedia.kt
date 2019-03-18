@@ -8,7 +8,7 @@ import me.aribon.domain_library.model.MediaEntity
  * @Author: aribon
  * @Date: 06/03/2019
  */
-class GetBook(private val repository: MediaRepository) {
+class GetMedia(private val repository: MediaRepository) {
 
     fun execute(id: String): Single<MediaEntity> {
         return repository

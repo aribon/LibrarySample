@@ -11,6 +11,6 @@ import me.aribon.domain_library.model.CategoryEntity
 interface MediaRepository {
     fun getCategoryList(): Single<Collection<CategoryEntity>>
     fun searchMedia(search: String): Single<Collection<MediaEntity>>
-    fun getMediaList(id: String): Single<Collection<MediaEntity>>
+    fun getMediaList(categoryId: String): Single<Collection<MediaEntity>>
     fun getMedia(id: String): Single<MediaEntity>
 }

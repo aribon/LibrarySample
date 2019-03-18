@@ -21,7 +21,7 @@ class AppRepository : OmdbRepository(), MediaRepository {
     throw NotImplementedError()
   }
 
-  override fun getMediaList(id: String): Single<Collection<MediaEntity>> {
+  override fun getMediaList(categoryId: String): Single<Collection<MediaEntity>> {
     return searchMovie("Avengers", MovieResponseMapper())
   }
 
