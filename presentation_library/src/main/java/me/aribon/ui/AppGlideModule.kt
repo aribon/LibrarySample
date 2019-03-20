@@ -1,4 +1,4 @@
-package me.aribon.library
+package me.aribon.ui
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

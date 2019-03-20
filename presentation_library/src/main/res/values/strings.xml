@@ -1,3 +1,25 @@
 <resources>
-  <string name="app_name">ui_library</string>
+  <string name="app_name">library_ui</string>
+
+  <string name="tui_splash_title">"Library"</string>
+
+  <string name="tui_category_list_title">"Categories"</string>
+
+  <string name="tui_category_item_label">"%1$s"</string>
+  <string name="tui_category_item_books_available">"%1$d books available"</string>
+
+  <string name="tui_book_list_title">"Books"</string>
+
+  <string name="tui_book_item_title">"%1$s"</string>
+  <string name="tui_book_item_author">"%1$s"</string>
+  <string name="tui_book_item_publisher">"%1$s"</string>
+  <string name="tui_book_item_price">"%1$.2f Eur"</string>
+
+  <string name="tui_book_details_title">"%1$s"</string>
+  <string name="tui_book_details_author">"Author: %1$s"</string>
+  <string name="tui_book_details_publisher">"Publisher: %1$s"</string>
+  <string name="tui_book_details_price">"%1$.2f Eur"</string>
+  <string name="tui_book_details_category">"%1$s"</string>
+  <string name="tui_book_details_description">"%1$s"</string>
+
 </resources>

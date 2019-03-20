@@ -7,7 +7,7 @@ import me.aribon.library.data.repository.AppRepository
 import me.aribon.library.redux.action.BookListAction
 import me.aribon.library.redux.action.BookListAction.Navigate
 import me.aribon.library.redux.state.BookListState
-import me.aribon.library.route.Router
+import me.aribon.presentation.route.Router
 import me.aribon.library.ui.base.BaseAppPresenter
 import me.aribon.library.ui.media.details.MediaDetailsFragment
 import me.aribon.library.ui.model.MediaItemViewModel

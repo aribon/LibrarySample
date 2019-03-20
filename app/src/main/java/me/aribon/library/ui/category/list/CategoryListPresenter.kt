@@ -6,7 +6,7 @@ import me.aribon.library.App
 import me.aribon.library.data.repository.AppRepository
 import me.aribon.library.redux.action.CategoryListAction
 import me.aribon.library.redux.state.CategoryListState
-import me.aribon.library.route.Router
+import me.aribon.presentation.route.Router
 import me.aribon.library.ui.model.mapper.CategoryItemViewModelMapper
 import me.aribon.redux.core.State
 import me.aribon.redux.core.StoreSubscriber

@@ -4,7 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import me.aribon.library.R
-import me.aribon.library.route.Router
+import me.aribon.presentation.route.Router
 import me.aribon.library.ui.base.AppActivity
 import me.aribon.library.ui.category.list.CategoryListFragment
 

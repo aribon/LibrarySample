@@ -8,11 +8,12 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.content_category_list.pgCategoryList
 import kotlinx.android.synthetic.main.content_category_list.recyclerCategoryList
 import kotlinx.android.synthetic.main.content_category_list.viewCategoryList
-import me.aribon.library.R
 import me.aribon.library.ui.base.AppFragment
 import me.aribon.library.ui.category.list.CategoryAdapter.CategoryAdapterListener
 import me.aribon.library.ui.category.list.CategoryListContract.Presenter
 import me.aribon.library.ui.model.CategoryItemViewModel
+import me.aribon.ui.category.list.CategoryListPresenter
+import me.aribon.ui_library.R
 
 /**
  * @Author: aribon
@@ -41,7 +42,7 @@ class CategoryListFragment :
 
   override fun initializePresenter() {
     super.initializePresenter()
-    me.aribon.ui.category.list.CategoryListPresenter(this)
+    CategoryListPresenter(this)
   }
 
   override fun initializeView() {
